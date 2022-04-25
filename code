@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+void main(){
+    char s[20];
+    int state=0,isValid=1,i=0;
+    printf("Enter your string: ");
+    scanf("%s",s);
+    while(i<strlen(s)){
+        switch(state){
+            case 0:if(s[i]=='a'){state=0;break;}
+                    else if(s[i]=='b'){state=1;break;}
+                    else{
+                        state=-1;
+                    }
+            case 1:if(s[i]=='a'){state=2;break;}
+                    else if(s[i]=='b'){state=1;break;}
+                    else{
+                        state=-1;
+                    }
+            case 2:if(s[i]=='a'){state=0;break;}
+                    else if(s[i]=='b'){state=3;break;}
+                    else{
+                        state=-1;
+                    }
+            case 3:if(s[i]=='a'){state=3;break;}
+                    else if(s[i]=='b'){state=3;break;}
+                    else{
+                        state=-1;
+                    }
+            case -1:i=strlen(s)+1;printf("\nstring not valid");break;
+        }
+        i++;
+    }
+    if(state==3){
+        printf("\nstring recognized");
+    }
+    else{
+        printf("\nstring not recognized");
+    }
+}
